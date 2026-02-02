@@ -1,11 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>My Personal Site</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>My Pixel Portfolio</title>
+  <!-- Pixel font from Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Add your HTML content here -->
+  <!-- Site wrapper -->
+  <div class="site">
+
+    <!-- Header with navigation -->
+    <header class="site-header pixel-border">
+      <div class="container header-inner">
+        <h1 class="logo">JESSICA'S PORTFOLIO</h1>
+        <nav aria-label="Main Navigation">
+          <ul class="nav">
+            <li><a href="#bio">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero banner -->
+    <section class="hero pixel-border">
+      <div class="container hero-inner">
+        <h2 class="hero-title">Hello, I'm Jessica</h2>
+        <p class="hero-sub">Creating fun solutions to real-world problems with a pixel-perfect touch.</p>
+        <a class="btn btn-primary" href="#projects">See Projects</a>
+      </div>
+    </section>
+
+    <!-- Main content -->
+    <main class="container main-content">
+
+      <!-- Bio -->
+      <section id="bio" class="bio pixel-card">
+        <h3>About Me</h3>
+        <p>I’m an aspiring web developer studying visual commuinications, intereactive media, and UX design. I enjoy building small projects that solve real-world problems, and having fun with my designs. After all, isnt that what life is all about?</p>
+      </section>
+
+    </main>
+
+    <!-- Skills band (full-width horizontal section) -->
+    <section id="skills" class="skills-band pixel-border">
+      <div class="container">
+        <h3>Skills</h3>
+        <ul class="skill-list">
+          <li>HTML</li>
+          <li>CSS</li>
+          <li>Responsive Design</li>
+          <li>Basic JavaScript</li>
+          <li>UX Design</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- Projects band (full-width horizontal section) -->
+    <section id="projects" class="projects-band pixel-border">
+      <div class="container">
+        <h3>Project Examples</h3>
+        <div class="project-grid">
+          <article class="project pixel-card">
+            <div class="thumb" aria-hidden="true">🗺️</div>
+            <h4>Farm Sim Prototype</h4>
+            <p>A small demo inspired by cozy farming games — uses tile-based movement and simple UI.</p>
+            <a href="#" class="btn">View</a>
+          </article>
+
+          <article class="project pixel-card">
+            <div class="thumb" aria-hidden="true">💾</div>
+            <h4>Puzzle Mini-Game</h4>
+            <p>A grid puzzle that emphasizes simple mechanics with retro visuals.</p>
+            <a href="#" class="btn">View</a>
+          </article>
+
+          <article class="project pixel-card">
+            <div class="thumb" aria-hidden="true">🧩</div>
+            <h4>Narrative Demo</h4>
+            <p>Short story-driven scene with pixel art characters and dialogue UI.</p>
+            <a href="#" class="btn">View</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact band (above footer) -->
+    <section class="contact-band pixel-border">
+      <div class="container contact-inner">
+        <h3>Get in touch</h3>
+        <p class="muted small">I'd love to hear from you — email or LinkedIn works best.</p>
+        <div class="contact-links">
+          <a class="contact-link btn" href="mailto:jcmiltn@bgsu.edu">jcmiltn@bgsu.edu</a>
+          <a class="contact-link btn" href="https://www.linkedin.com/in/jcmiltner7/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="site-footer pixel-border">
+      <div class="container footer-inner">
+        <p>© 2026 Jessica Miltner — Built with ❤️ and pixels</p>
+        <p class="tiny">This is a static demo layout — JavaScript will be added later for animations.</p>
+      </div>
+    </footer>"},{ 
+  </div>
+
+  <!-- Keep HTML simple so it's easy to read & extend -->
 </body>
 </html>

@@ -1,1 +1,211 @@
-/* Add you CSS here */
+/* Basic pixel-art inspired styles for the site
+   - Uses a limited palette and a pixel font
+   - Simple flexbox layout (no CSS Grid)
+   - Comments explain each section for learners
+*/
+
+:root{
+  /* -----------------------------
+     Design tokens — colors
+     ----------------------------- */
+  --bg: #11121a;              /* page background */
+  --panel: #1f2b2f;           /* card / panel background */
+  --accent: #ffd166;         /* warm highlight (yellow) */
+  --pink: #ff6fa3;           /* secondary accent (pink) */
+  --muted: #b7c5c7;          /* subdued text color */
+  --border: #081013;         /* border color */
+
+  /* -----------------------------
+     Measurements & shadows
+     ----------------------------- */
+  --border-width: 0.375rem;      /* 6px main border */
+  --thin-border-width: 0.1875rem;/* 3px thin border */
+  --shadow-offset: 0.375rem;     /* 6px shadow offset */
+  --shadow-small: 0.125rem;      /* 2px small shadow */
+
+  /* -----------------------------
+     Reusable UI tokens
+     ----------------------------- */
+  --btn-shadow: var(--shadow-small) var(--shadow-small) 0 rgba(0,0,0,0.35);
+  --dark-button-gradient: linear-gradient(180deg,#1a2328,#0f1620);
+  --accent-gradient: linear-gradient(90deg,var(--pink),var(--accent));
+
+  /* -----------------------------
+     Spacing
+     ----------------------------- */
+  --gap: 1rem;                 /* base spacing */
+  --container-padding: 1.5rem; /* page gutters */
+}
+
+/* Page reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: 'Press Start 2P', monospace; /* pixel font */
+  background-color:var(--bg);
+  color:var(--muted);
+  -webkit-font-smoothing: none;
+  text-rendering: optimizeSpeed;
+  /* Simple repeating squares to simulate pixels (more subtle now) */
+  background-image: repeating-linear-gradient(90deg, rgba(255,255,255,0.01) 0 0.5rem, transparent 0.5rem 1rem),
+                    repeating-linear-gradient(0deg, rgba(255,255,255,0.01) 0 0.5rem, transparent 0.5rem 1rem);
+  background-size: 3rem 3rem;
+} 
+
+/* -----------------------------
+   Layout container
+   - Centers content and constrains max-width
+   - Use --container-padding for consistent gutters
+   ----------------------------- */
+.container{max-width:62.5rem;margin:0 auto;padding:var(--container-padding)}
+
+/* -----------------------------
+   Pixel border (sprite style)
+   - Thick border + offset shadow to mimic game tiles
+   - Applied to sections to give a 'card' or 'panel' feel
+   ----------------------------- */
+.pixel-border{
+  border:var(--border-width) solid var(--border);
+  box-shadow: var(--shadow-offset) var(--shadow-offset) 0 0 rgba(0,0,0,0.45);
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+} 
+
+/* -----------------------------
+   Header / Navigation
+   - Left-aligned logo, right-side navigation
+   - .header-inner controls spacing between items
+   ----------------------------- */
+.site-header{display:flex;align-items:center}
+.header-inner{display:flex;justify-content:flex-start;align-items:center}
+.logo{font-size:0.875rem;color:var(--pink);margin:0 2.5rem 0 0.5rem;padding-left:0.25rem} 
+
+/* -----------------------------
+   Navigation buttons
+   - Styled as chunky pixel buttons; use gradients and shadow tokens
+   ----------------------------- */
+.nav{list-style:none;margin:0;padding:0;display:flex;gap:2.625rem;margin-left:auto;align-items:center}
+.nav li{margin:0}
+.nav a{display:inline-block;padding:0.875rem 1.25rem;background:var(--dark-button-gradient);color:#fff;text-decoration:none;border:var(--thin-border-width) solid var(--border);box-shadow:var(--btn-shadow)}
+.nav a:hover{background:var(--accent-gradient);color:#111;box-shadow:var(--btn-shadow)} 
+
+/* -----------------------------
+   Hero banner (call-to-action)
+   - Centered title + subtitle and primary CTA
+   - Keep spacing roomy so CTA stands out
+   ----------------------------- */
+.hero{margin:1.5rem 0;padding:1.75rem}
+.hero-inner{text-align:center}
+.hero-title{font-size:1.5rem;margin:0 0 0.5rem;padding:0.25rem;color:var(--accent)}
+.hero-sub{margin:0 0 1rem;color:var(--muted);font-size:1rem;line-height:1.4}
+
+/* -----------------------------
+   Buttons
+   - .btn is the base button style for anchors
+   - .btn-primary is used for prominent CTAs (hero, important actions)
+   - Transitions animate transform, shadow, and brightness for feedback
+   ----------------------------- */
+.btn{display:inline-block;padding:0.5rem 0.75rem;background:#0f1620;color:var(--muted);text-decoration:none;border:var(--thin-border-width) solid var(--border);transition:transform 140ms linear, box-shadow 140ms linear, filter 140ms linear;box-shadow:var(--btn-shadow)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--pink));color:#111}
+/* Hover/active specific to the hero call-to-action */
+.hero .btn-primary:hover{transform:translateY(-0.1875rem);box-shadow:calc(var(--shadow-offset) + 0.125rem) calc(var(--shadow-offset) + 0.125rem) 0 rgba(0,0,0,0.45);filter:brightness(1.06);outline:var(--thin-border-width) solid rgba(255,111,160,0.08)}
+.hero .btn-primary:active{transform:translateY(0);box-shadow:var(--btn-shadow);outline:none}
+
+/* -----------------------------
+   Main layout
+   - Stacked layout on small screens; two-column on larger screens
+   - Use .bio centered on small screens for a compact reading width
+   ----------------------------- */
+.main-content{display:flex;flex-direction:column;gap:var(--gap)}
+.bio{margin:0 auto;text-align:center}
+.bio p{font-size:0.85rem;line-height:1.6}
+
+@media(min-width:48rem){
+  .main-content{flex-direction:row;align-items:flex-start}
+  .bio{flex:1;margin-right:1rem}
+} 
+
+/* Reusable card style */
+.pixel-card{background:var(--panel);padding:1rem;border:var(--border-width) solid var(--border);} 
+.pixel-card h3{margin-top:0;margin-bottom:0.5rem}
+.pixel-card p{margin:0 0 0.5rem;line-height:1.4;font-size:0.7rem} 
+/* -----------------------------
+   Skills list
+   - Simple chips to show skills; flexible wrap for responsiveness
+   ----------------------------- */
+.skill-list{display:flex;flex-wrap:wrap;gap:0.75rem;padding:0;margin:0;list-style:none}
+.skill-list li{background:#0f1620;padding:0.75rem;border:var(--thin-border-width) solid var(--border);font-size:0.75rem} 
+
+/* -----------------------------
+   Projects grid
+   - Flexible row on larger screens, stacked on small screens
+   - Each project is a small card with thumbnail, title, and CTA
+   ----------------------------- */
+.projects h3{margin-top:0;text-align:center;margin-bottom:0.5rem}
+.project-grid{display:flex;flex-direction:column;gap:0.75rem}
+@media(min-width:48rem){.project-grid{flex-direction:row}}
+.project{flex:1;padding:0.75rem;display:flex;flex-direction:column;gap:0.5rem;min-width:13.75rem}
+.project h4{margin:0;font-size:0.75rem}
+.project p{font-size:0.625rem} 
+
+/* -----------------------------
+   Thumbnail box
+   - Placeholder for project images or icons; keep pixel feel with border
+   ----------------------------- */
+.thumb{width:100%;height:7.5rem;background:linear-gradient(45deg,#263238,#1b2b2b);display:flex;align-items:center;justify-content:center;font-size:2.5rem;border:var(--thin-border-width) solid var(--border);}
+
+/* -----------------------------
+   Contact band (above footer)
+   - Simple band with email / LinkedIn call-to-action
+   ----------------------------- */
+.contact-band{margin:1rem 0;padding:1rem 0;text-align:center}
+.contact-band .contact-inner{display:flex;flex-direction:column;align-items:center;gap:0.5rem}
+.contact-links{display:flex;gap:0.75rem;flex-wrap:wrap;justify-content:center}
+.contact-links .contact-link{margin:0}
+.contact-links .contact-link:hover{background:var(--accent-gradient);color:#111}
+
+/* Footer */
+.site-footer{margin-top:1.75rem;padding:0.75rem 0}
+.footer-inner{display:flex;flex-direction:column;gap:0.5rem;align-items:center}
+.footer-inner p{margin:0.25rem 0}
+.tiny{font-size:0.5625rem;color:#96a6a8}
+
+@media(min-width:48rem){
+  /* Keep footer lines stacked vertically on all screen sizes */
+  .footer-inner{flex-direction:column;justify-content:center;align-items:center}
+  .contact-links{justify-content:flex-start}
+} 
+
+/* Small tweaks for readability */
+h1,h2,h3,h4{color:var(--pink)}
+
+/* Skills band (full-width) */
+.skills-band{margin:1rem 0;padding:1.125rem 0;background:linear-gradient(180deg, rgba(255,111,160,0.02), transparent)}
+.skills-band .container{display:flex;flex-direction:column;align-items:center;gap:0.75rem}
+.skills-band .skill-list{justify-content:center}
+.skills-band .skill-list li{border-color:var(--pink)}
+
+/* Projects band (full-width) */
+.projects-band{margin:1rem 0;padding:1.125rem 0}
+.projects-band .project-grid{display:flex;gap:0.75rem;flex-wrap:wrap}
+@media(min-width:48rem){.projects-band .project-grid{gap:1.25rem}}
+.projects-band .project{min-width:13.75rem}
+.projects-band .project:hover{box-shadow:0 0 0 var(--thin-border-width) rgba(255,111,160,0.06)}
+
+/* Responsive tweaks for small screens */
+@media(max-width:48rem){
+  .container{padding:1rem}
+  .logo{font-size:0.75rem;margin:0 1rem 0 0.5rem}
+  .nav{gap:0.75rem}
+  .nav a{padding:0.5rem 0.75rem;font-size:0.75rem}
+  .hero-title{font-size:1.125rem}
+  .hero-sub{font-size:0.56rem}
+  .thumb{height:5rem;font-size:2rem}
+  .project{min-width:100%}
+  .projects-band .project-grid{gap:0.5rem}
+}
+
+/* Make sure images (when added) look pixelated */
+img{image-rendering: pixelated; image-rendering: crisp-edges}
+
+/* End of stylesheet */
