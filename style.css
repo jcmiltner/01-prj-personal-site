@@ -54,6 +54,18 @@ body{
 } 
 
 /* -----------------------------
+    JavaScript reveal animation
+    - Elements start slightly lower and fade in when JS marks them visible
+    - The transition stays simple so the page still feels beginner-friendly
+    ----------------------------- */
+.js-enabled [data-reveal]{opacity:0;transform:translateY(0.875rem);transition:opacity 500ms ease, transform 500ms cubic-bezier(0.22,1,0.36,1);will-change:opacity,transform;transition-delay:var(--reveal-delay,0ms)}
+.js-enabled [data-reveal].is-visible{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion: reduce){
+   .js-enabled [data-reveal]{opacity:1;transform:none;transition:none}
+}
+
+/* -----------------------------
    Layout container
    - Centers content and constrains max-width
    - Use --container-padding for consistent gutters
@@ -79,6 +91,16 @@ body{
 .site-header{display:flex;align-items:center}
 .header-inner{display:flex;justify-content:flex-start;align-items:center}
 .logo{font-size:0.875rem;color:var(--pink);margin:0 2.5rem 0 0.5rem;padding-left:0.25rem} 
+
+/* Navigation area
+    - Holds the link row and the little cat sprite
+    - The cat moves across the links in JavaScript
+ */
+.nav-area{position:relative;display:flex;align-items:center;justify-content:flex-end;flex:1;min-height:5.5rem}
+.nav-cat{position:fixed;top:0;left:0;z-index:20;display:inline-block;padding:0.45rem 0.65rem;background:linear-gradient(180deg,#ffcc7a,#ff8c1a);color:#2a1400;text-decoration:none;border:var(--thin-border-width) solid #8b4a00;box-shadow:var(--btn-shadow),0 0 0 0.125rem rgba(255,191,102,0.18);font-family:inherit;font-size:0.75rem;line-height:1;cursor:pointer;pointer-events:auto;white-space:nowrap;transition:transform 1200ms cubic-bezier(0.22,1,0.36,1), opacity 200ms ease, filter 200ms ease;will-change:transform;opacity:0.98;text-shadow:0.0625rem 0.0625rem 0 rgba(255,245,214,0.45);appearance:none}
+.nav-cat:hover,.nav-cat:focus-visible{filter:brightness(1.08) saturate(1.08);outline:0.125rem solid rgba(255,204,122,0.45);outline-offset:0.125rem}
+.nav-cat.is-walking{opacity:1}
+.nav-cat.is-reacting{filter:brightness(1.15) saturate(1.12);box-shadow:var(--btn-shadow),0 0 0 0.2rem rgba(255,204,122,0.22)}
 
 /* -----------------------------
    Navigation buttons
@@ -196,8 +218,10 @@ h1,h2,h3,h4{color:var(--pink)}
 @media(max-width:48rem){
   .container{padding:1rem}
   .logo{font-size:0.75rem;margin:0 1rem 0 0.5rem}
+   .nav-area{min-height:5rem}
   .nav{gap:0.75rem}
   .nav a{padding:0.5rem 0.75rem;font-size:0.75rem}
+   .nav-cat{font-size:0.6rem}
   .hero-title{font-size:1.125rem}
   .hero-sub{font-size:0.56rem}
   .thumb{height:5rem;font-size:2rem}
